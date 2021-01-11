@@ -70,7 +70,7 @@ exports.update = (id, values) => new Promise(async(resolve, reject) => {
 exports.delete = (id) => new Promise(async(resolve, reject) => {
     if (!id) reject(new Error(`id can't be empty`));
     let responce = await BaseService.delete(User, id, log);
-    resolve(true)
+    resolve(responce)
 });
 
 
