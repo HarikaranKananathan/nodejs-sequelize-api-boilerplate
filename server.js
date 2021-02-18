@@ -22,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'storage')));
 // routes
 app.use('/api', require('./routes/api'));
 app.use('/', require('./routes/web'));
+app.use('/api-docs', require('./app/helpers/swagger'));
 
 // Set the default views directory to html folder
 app.set('views', path.join(__dirname, 'views'));

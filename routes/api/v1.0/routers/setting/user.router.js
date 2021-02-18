@@ -5,6 +5,7 @@ const userController = require('../../../../../app/http/Controller/setting/user.
 const {
   validateBodyWithToken,
   validateToken,
+  validateBody
 } = require('../../../../../util/validator.util');
 
 const {
@@ -17,11 +18,11 @@ router.get('/search', validateToken(), userController.search);
 router
   .route('/')
   .get(validateToken(), userController.getAll)
-  .post(validateBodyWithToken(createRequest), userController.create);
+  .post(validateBody(createRequest),userController.create);
 
 router
   .route('/:id')
-  .get(validateToken(), userController.show)
+  .get(userController.show)
   .patch(validateBodyWithToken(updateRequest), userController.edit)
   .delete(validateToken(), userController.delete);
 
