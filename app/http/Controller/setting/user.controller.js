@@ -1,4 +1,5 @@
 const service = require('../../../service/setting/user.service');
+const userTransformer = require('../../transformer/setting/user.transformer');
 
 const log4js = require('../../../../config/log4js');
 const log = log4js.getLogger('user.controller.js');
@@ -25,7 +26,7 @@ exports.getAll = async (req, res) => {
 exports.create = async (req, res) =>
   service
     .create(req.body)
-    .then(async (doc) => response.successWithData(res, doc))
+    .then(async (doc) => response.successWithData(res, new userTransformer(doc)))
     .catch((err) => catchError(res, err, log));
 
 /**
@@ -36,7 +37,7 @@ exports.create = async (req, res) =>
 exports.show = async (req, res) =>
   service
     .show(req.params.id)
-    .then((data) => response.successWithData(res, data))
+    .then((doc) => response.successWithData(res, new userTransformer(doc)))
     .catch((err) => catchError(res, err, log));
 
 /**
